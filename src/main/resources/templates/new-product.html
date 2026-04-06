@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/bootstrap/5.3.8/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="p-3" layout:fragment="content">
+    <h1>Add New Product</h1>
+    <form th:action="@{/save}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" th:value="${product.name}" required>
+            <label for="price" class="for-label">Price</label>
+            <input type="number" class="form-control" id="price" name="price" th:value="${product.price}" required>
+            <label for="quantity" class="for-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" th:value="${product.quantity}" required>
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+</div>
+</body>
+</html>
