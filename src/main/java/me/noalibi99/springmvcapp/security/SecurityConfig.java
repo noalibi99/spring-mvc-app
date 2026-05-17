@@ -34,6 +34,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .formLogin(Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/index/**").hasRole("USER"))
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/new/**", "/edit/**", "/save/**", "/delete/**").hasRole("ADMIN"))
                 .authorizeHttpRequests(ar->ar.anyRequest().authenticated())
