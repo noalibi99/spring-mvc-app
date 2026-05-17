@@ -1,5 +1,6 @@
 package me.noalibi99.springmvcapp.web;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -62,5 +63,15 @@ public class ProductController {
         }
         productRepository.save(product);
         return "redirect:/index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        return "login";
     }
 }

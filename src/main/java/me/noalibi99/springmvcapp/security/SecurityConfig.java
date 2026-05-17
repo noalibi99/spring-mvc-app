@@ -33,10 +33,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .formLogin(Customizer.withDefaults())
+//                .formLogin(Customizer.withDefaults())
+                .formLogin(fl -> fl.loginPage("/login").permitAll().defaultSuccessUrl("/index", true))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/index/**").hasRole("USER"))
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/new/**", "/edit/**", "/save/**", "/delete/**").hasRole("ADMIN"))
+                .authorizeHttpRequests(ar -> ar.requestMatchers("/webjars/**").permitAll())
                 .authorizeHttpRequests(ar->ar.anyRequest().authenticated())
                 .exceptionHandling(eh -> eh.accessDeniedPage("/403"))
                 .build();
